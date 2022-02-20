@@ -1,0 +1,72 @@
+                /////////////////////////////////////AVRO///////////////////////////////////
+
+Two ways to create a Dataframe on top of AVRO files.
+
+Method 1: to take schema directly from the files
+
+need maven- com.databricks.spark.avro dependency
+
+//creates dataframe on top of avro files and gets schema from the files itself
+val baseDF=spark.read.format("com.databricks.spark.avro").load("C:\\Users\\15148\\IdeaProjects\\executeEngine\\src\\main\\resources\\AVRO/*")
+
+METHOD 2: externally providing schema file  and create dataframe on top of the avro files using this schema
+
+//providing schema file
+    val schemaAvro = new Schema.Parser().parse(new File("C:\\Users\\15148\\IdeaProjects\\executeEngine\\src\\main\\resources\\AVRO\\schema/schema.avsc"))
+
+//providing data files
+ val baseSchemaDF = spark.read
+      .format("com.databricks.spark.avro")
+      .option("avroSchema", schemaAvro.toString)
+      .load("C:\\Users\\15148\\IdeaProjects\\executeEngine\\src\\main\\resources\\AVRO\\*")
+
+//To write a dataframe into avro files
+df.write.format("com.databricks.spark.avro").save("person.avro")
+
+//to get schema of a dataframe built on top of avro files
+print(df.schema)
+
+# display dataframe columns
+    val columnsList=baseSchemaDF.columns.toSeq
+    columnsList.foreach(println)
+
+# to print each schema field separately
+    val schemaFields=baseSchemaDF.schema.fields
+    schemaFields.foreach(println)
+
+**** Useful URL about how avro works and schema.registry works **
+https://aseigneurin.github.io/2018/08/02/kafka-tutorial-4-avro-and-schema-registry.html
+
+#*why serialization and deserialization is done?
+When transmitting data or storing them in a file, the data are required to be byte strings,
+but complex objects are seldom in this format.
+Serialization can convert these complex objects into byte strings for such use.
+After the byte strings are transmitted, the receiver will have to recover the original object from the byte string.
+This is known as deserialization.
+Example how it works:
+Say, you have an object:
+{foo: [1, 4, 7, 10], bar: "baz"}
+serializing into JSON will convert it into a string:
+'{"foo":[1,4,7,10],"bar":"baz"}'
+which can be stored or sent through wire to anywhere.
+The receiver can then deserialize this string to get back the original object. {foo: [1, 4, 7, 10], bar: "baz"}
+
+#* for different file types and thier advantages in Big Data
+https://towardsdatascience.com/big-data-file-formats-explained-dfaabe9e8b33
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /////////////////////////////////////AVRO///////////////////////////////////

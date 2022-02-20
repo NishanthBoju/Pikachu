@@ -25,6 +25,7 @@ It can be created by using sparkContext.parallelize(), from text file, from anot
   ///////////creatingRDDUsingParallelize//////////////////
 
   ///////////creatingRDDUsingAnyFile//////////////////
+
   //you will get a resulting RDD with first element = filepath and second element = content
 def creatingRDDUsingTextFile(pathToLoad:String): RDD[String] ={
   val someRDD=Util.spark.sparkContext.textFile(s"$pathToLoad")
