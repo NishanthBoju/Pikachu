@@ -63,7 +63,8 @@ countByKey()	Only available on RDDs of type (K, V). Returns a hashmap of (K, Int
 foreach(func)	Run a function func on each element of the dataset. This is usually done for side effects such as updating an Accumulator or interacting with external storage systems.
 Note: modifying variables other than Accumulators outside of the foreach() may result in undefined behavior. See Understanding closures for more details.
 
-
+for various types of joins with examples
+https://sparkbyexamples.com/spark/spark-sql-dataframe-join/
 
 
 
@@ -75,4 +76,32 @@ Note: modifying variables other than Accumulators outside of the foreach() may r
    */
 
   //MAP-Returns a new distributed dataset formed by passing each element of the source through a function func.
+
+
+  /*
+  * to use when otherwise and some other transformations
+  https://sparkbyexamples.com/spark/spark-case-when-otherwise-example/
+  * for equality andlogicoperations
+  https://medium.com/@achilleus/a-practical-introduction-to-sparks-column-part-2-1e52f1d29eb1
+  * scala transformations with examples
+  https://supergloo.com/spark-scala/apache-spark-examples-of-transformations/
+  *
+  *difference between map and flatmap
+  scala> sc.parallelize(List(1,2,3)).flatMap(x=>List(x,x,x)).collect
+  res200: Array[Int] = Array(1, 1, 1, 2, 2, 2, 3, 3, 3)
+
+  scala> sc.parallelize(List(1,2,3)).map(x=>List(x,x,x)).collect
+  res201: Array[List[Int]] = Array(List(1, 1, 1), List(2, 2, 2), List(3, 3, 3))
+  *
+  *Window function
+  https://sparkbyexamples.com/spark/spark-sql-window-functions/
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  *
+  * */
 }
