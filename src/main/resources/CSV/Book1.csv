@@ -1,0 +1,6 @@
+﻿FILE,TYPE,BEHAVIOUR,READ,WRITE,SPLITTABLE,COMPRESSION,SCHEMA EVOLUTION
+SEQUENCE FILE,ROW BASED,Each record is stored as a key value pair in binary format.(so less space),Good at reading full rows of data,good,Yes,Yes,Limited Schema Evollution(new columns can only be appended but can never be deleted)
+AVRO,ROW BASED,It is a file format plus a serialization and deserialization framework. Best for I/O operations,Average,Average,Yes,Yes (Block level),"Mainly designed for schema evolution.Fields can be deleted, added, renamed while old files can still be read with the new schema"
+Text Files(CSV/TSV/..),ROW BASED,Each line is a record and lines are Separated by \n,Slow reads.Slowest file formats to read of all types.,Good,Inherently splittable,NO,Limited Schema Evollution(new columns can only be appended but can never be deleted)
+RC/ORC,COLUMN BASED,These are flat files consisting of binary key value pairs similar to sequence files,Faster reads,Slow writes,Yes,Yes block/high compression,No Schema Evolution
+PARQUET,COLUMN BASED,Stores  nested  data structures in a flat columnar format,Faster reads,Slow writes,Yes,Snappy compression,Limited Schema Evollution(only aapend)

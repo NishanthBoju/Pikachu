@@ -1,0 +1,53 @@
+
+https://spark.apache.org/docs/latest/rdd-programming-guide.html
+
+Why do I need Spark session when I already have Spark context?
+A part of the answer would be that it unifies all the different contexts in spark and avoids the developer
+to worry about creating difference contexts. But apart from this big advantage, the developers of spark have
+tried to solve the problem when there are multiple users using the same spark context.
+Let’s say we have multiple users accessing the same notebook environment which had shared spark context and
+the requirement was to have an isolated environment sharing the same spark context.
+Prior to 2.0, the solution to this was to create multiple spark contexts ie spark context per isolated environment or users
+and is an expensive operation(generally 1 per JVM). But with the introduction of the spark session, this issue has been addressed.
+Note: we can have multiple spark contexts by setting spark.driver.allowMultipleContexts to true .
+But having multiple spark contexts in the same jvm is not encouraged and is not considered as a good practice as it
+makes it more unstable and crashing of 1 spark context can affect the other.
+
+ more--- https://medium.com/@achilleus/spark-session-10d0d66d1d24   ** very useful
+
+ state-less and state
+ The property of state refers to being able to access data from a previous point in time in the current point in time.
+
+ What does this mean? Assume I want to do a word count of all words which have arrived to my streaming application.
+ But the nature of streaming is that data flows in and out of the pipeline. In order to be able to access previous data,
+ in this example some kind of map which holds what was the previous number of words in the stream,
+  I have to access some state which was accumulated.
+
+ While some of Sparks RDD operators are stateless, such as map, filter etc, it does expose stateful operators in the form
+ of mapWithState. Not only that, in the new Spark streaming architecture, called "Structured Streaming",
+  state is built into the pipeline and mostly abstracted away from the user in order to be able to expose aggregation operators,
+   such as agg.
+ Stateful stream processing means that a “state” is shared between events and therefore past events can influence
+  the way current events are processed. In simple words, we can say that in Stateful Streaming the processing of
+  the current data/batch is dependent on the data/batch that has been processed already.
+
+  coarse grained vs fine grained
+  A fine grained update would be an update to one record in a database whereas coarse grained is generally functional operators
+  (like used in spark) for example map, reduce, flatMap, join. Spark's model takes advantage of this because once it
+  saves your small DAG of operations (small compared to the data you are processing) it can use that to recompute as long
+  as the original data is still there. With fine grained updates you cannot recompute because saving the updates could
+  potentially cost as much as saving the data itself, basically if you update each record out of billions separately
+  you have to save the information to compute each update, whereas with coarse grained you can save one function that
+  updates a billion records. Clearly though this comes at the cost of not being as flexible as a fine grained model.
+
+
+  HADOOP MAPREDUCE vs SPARK
+  Industries are using Hadoop extensively to analyze their data sets.
+  The reason is that Hadoop framework is based on a simple programming model (MapReduce) and it enables a computing solution
+  that is scalable, flexible, fault-tolerant and cost effective. Here, the main concern is to maintain speed in processing
+  large datasets in terms of waiting time between queries and waiting time to run the program.
+  Spark was introduced by Apache Software Foundation for speeding up the Hadoop computational computing software process.
+  As against a common belief, Spark is not a modified version of Hadoop and is not, really, dependent on Hadoop because
+  it has its own cluster management. Hadoop is just one of the ways to implement Spark.
+  Spark uses Hadoop in two ways – one is storage and second is processing. Since Spark has its own cluster management
+  computation, it uses Hadoop for storage purpose only.

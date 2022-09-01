@@ -1,0 +1,3 @@
+What is Change Data Capture?
+Change Data Capture is a software process that identifies and tracks changes to data in a database.
+CDC provides real-time or near-real-time movement of data by moving and processing data continuously as new database events occur.

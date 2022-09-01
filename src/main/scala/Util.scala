@@ -9,9 +9,16 @@ object Util {
   // val conf = new SparkConf().setAppName("Simple Application").setMaster("local[*]")
   //After spark 1.6 we have SparkSession which contains sparkContext,SqlContext....
   val spark = SparkSession.builder()
-    .master("local[1]")
+    .master("local[*]")
     .appName("SparkByExamples.com")
-    .getOrCreate();
+    .getOrCreate()
+
+
+//  val sc = spark.sparkContext
+//  spark.conf.set("eventLog.enabled",true)
+//  spark.conf.set("history.ui.port",4040)
+//  spark.conf.set("eventLog.dir","/Users/new/sparkLogs")
+
   //  val sc = new spark.sparkContext()
   //  val spark=new SparkSession(conf)
   //SETTING LOG LEVEL CAN BE DONE TO SC OR LOGGER OBJECT BUT SECOND ONE IS PREFERABLE

@@ -1,0 +1,69 @@
+TELL ME ABOUT YOURSELF:
+
+I started my career as Hadoop developer with volante technologies where I mainly worked on SQL and
+ETL data pipelines using Apache Spark using Scala
+Then i worked with Rogers where i was mainly involved in big data technologies like hive,hadoop, kafka, spark,scala,python
+Currently I am working for Bell as a Data Engineer working on big data technologies like spark,scala,hive,kafka
+
+
+Current project in BELL:
+
+DATA INVOLVED in BELL/ROGERS:
+The data mainly was about customers and network.
+The data includes mobile phone usage, records, network equipment, server logs, billing, and social
+networks.
+The ultimate desire to explore how to shape new revenue streams and capture a more aggressive market
+ share.
+
+I am currently working on a project called Landing and Materialization.
+
+In the Landing stage, we use a tool called attunity which connects to a database and writes data to kafka topics.
+and then we read the messages from kafka topic using a Landing jar written in JAVA which has APIs to connect to kafka
+and consume the messages from the kafka topics AND then WRITE THEM ON TOP OF HADOOP.
+
+In the materialization STAGE, we use a materialization jar written in spark scala ..which reads the files on hadoop and then
+perform some transformations and finally write the data on the files on top of hive.
+
+PROJECT WORKED IN VOLANTE:
+I have worked on various projects to automate the data flow from various source systems like sftp,data-warhouse,database,historical data,kafka to target systems like HIVE or HADOOP.
+I have developed various scripts using spark scala, shell scripting and completely automated the process according to the use case requirements.
+Worked on automating the data flow from various source systems to the target systems like HIVE or HADOOP according to use case requirements.
+
+
+WORK DONE IN VOLANTE, HADOOP DEVELOPER:
+Build various queries in teradata. Designed ETL architecture for data flow.
+
+BELL QUESTIONS:
+NiFi is a Software which can be used to  design and to automate the flow of data between software systems.
+
+OLAP  stands for On-Line Analytical Processing.
+It is used for analysis of database information from multiple database systems at one time such as sales analysis and forecasting,
+ market research, budgeting and etc. Data Warehouse is the example of OLAP system.
+
+OLTP stands for On-Line Transactional processing.
+It is used for maintaining the online transaction and record integrity in multiple access environments.
+OLTP is a system that manages very large number of short online transactions for example, ATM.
+
+CITRIX QUESTIONS:
+SQL Server Reporting Services (SSRS) is a SQL Server subsystem that enables the creation of graphical, mobile and printed reports using SQL Server and other data sources.
+
+SQL Server Integration Services(SSIS) is a platform for building enterprise-level data integration and data transformations solutions.
+    Use Integration Services to solve complex business problems by copying or downloading files, loading data warehouses, cleansing and mining data, and managing SQL Server objects and data.
+
+VLOOKUP stands for 'Vertical Lookup'. It is a function that makes Excel search for a certain value in a column (the so called 'table array'),
+   in order to return a value from a different column in the same row.
+
+Microsoft Visio is a diagramming and vector graphics application ..with which we can create a flowchart of the use case.
+
+
+Additional questions if asked.
+what are the transformations used ..
+Answer:
+we filter out few unnecessary columns and then add new column modified timestamp .
+.which specifies the timestamp when the record was ingested
+
+difference between uri,url and urn
+https://danielmiessler.com/study/difference-between-uri-url/
+
+OUT OF MEMORY ERROR
+https://www.youtube.com/watch?v=FdT5o7M35kU

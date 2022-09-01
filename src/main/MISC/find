@@ -1,0 +1,41 @@
+types on memory in spark ..to persist and cache
+read below
+https://sparkbyexamples.com/spark/spark-difference-between-cache-and-persist/
+
+spark context vs spark session
+https://sparkbyexamples.com/spark/sparksession-vs-sparkcontext/
+
+various joins and hashkey
+
+UDF - used defined function
+once we define UDF we need to register the UDF by importing
+import org.apache.spark.sql.functions.udf
+
+UDF vs FUNCTION
+def replaceBlanksWithNulls(column):
+    return when(col(column) != "", col(column)).otherwise(None)
+
+Both of these next statements work:
+
+x = rawSmallDf.withColumn("z", replaceBlanksWithNulls("z"))
+and using a UDF:
+//registering the UDF as shown below
+replaceBlanksWithNulls_Udf = udf(replaceBlanksWithNulls)
+y = rawSmallDf.withColumn("z", replaceBlanksWithNulls_Udf("z"))
+
+why do we need to use UDF instead of normal function
+You can find the difference in the Spark SQL (as mentioned in the document).
+ For example, you can find that if you write:
+spark.sql("select replaceBlanksWithNulls(column_name) from dataframe")
+does not work if you didn't register the function replaceBlanksWithNulls as a udf.
+In spark sql we need to know the returned type of the function for the exectuion.
+Hence, we need to register the custom function as a user-defined function (udf) to be used in spark sql.
+default return type of UDF is string.
+UDFs will decrease the performance of spark job..and we need to use/apply optimization techniques manually to increase
+the performance.
+
+About types of erros in programming
+https://www.bbc.co.uk/bitesize/guides/zbssv9q/revision/2
+
+diff between RDD vs Dataframe vs Dataset
+https://www.analyticsvidhya.com/blog/2020/11/what-is-the-difference-between-rdds-dataframes-and-datasets/
